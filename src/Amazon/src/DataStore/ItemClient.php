@@ -35,7 +35,6 @@ class ItemClient implements ListingsInfoInterface
     use NoSupportCreateTrait;
     use NoSupportHasTrait;
     use NoSupportIteratorTrait;
-    use NoSupportGetIdentifier;
     use NoSupportCountTrait;
 
     /**
@@ -248,6 +247,14 @@ class ItemClient implements ListingsInfoInterface
         $query->setQuery(new EqNode(static::FIELD_ASIN, $id));
         $result = $this->query($query);
         return empty($result) ? null : current($result);
+    }
+
+    /**
+     * @return string
+     */
+    public function getIdentifier()
+    {
+        return static::FIELD_ASIN;
     }
 
     /**
