@@ -10,6 +10,11 @@ namespace rollun\amazon;
 
 
 use ApaiIO\ApaiIO;
+use ApaiIO\Configuration\GenericConfiguration;
+use ApaiIO\Request\GuzzleRequest;
+use ApaiIO\ResponseTransformer\XmlToArray;
+use GuzzleHttp\Client;
+use rollun\utils\Php\Serializer;
 
 class SerializedApaiIO extends ApaiIO implements \Serializable
 {
@@ -22,7 +27,13 @@ class SerializedApaiIO extends ApaiIO implements \Serializable
      */
     public function serialize()
     {
-        return json_encode($this->configuration);
+        $data = [
+            "Country" => $this->configuration->getCountry(),
+            "AccessKey" => $this->configuration->getAccessKey(),
+            "SecretKey" => $this->configuration->getSecretKey(),
+            "AssociateTag" => $this->configuration->getAssociateTag(),
+        ];
+        return Serializer::phpSerialize($data);
     }
 
     /**
@@ -36,6 +47,19 @@ class SerializedApaiIO extends ApaiIO implements \Serializable
      */
     public function unserialize($serialized)
     {
-        $this->configuration = json_decode($serialized);
+        $data = Serializer::phpUnserialize($serialized);
+        // These can to be removed to config and/or be used via own factories
+        $conf = new GenericConfiguration();
+        $client = new Client();
+        $req = new GuzzleRequest($client);
+        $responseTransformer = new XmlToArray();
+        $conf
+            ->setCountry($data["Country"])
+            ->setAccessKey($data["AccessKey"])
+            ->setSecretKey($data["SecretKey"])
+            ->setAssociateTag($data["AssociateTag"])
+            ->setRequest($req)
+            ->setResponseTransformer($responseTransformer);
+        $this->configuration = $conf;
     }
 }
