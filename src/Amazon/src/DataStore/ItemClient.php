@@ -283,4 +283,13 @@ class ItemClient implements ListingsInfoInterface
         ];
         return $itemData;
     }
+
+    /**
+     *
+     */
+    public function __wakeup()
+    {
+        return ["apaiIO"];
+    }
+
 }
