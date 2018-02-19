@@ -6,7 +6,7 @@
  * Time: 2:04 PM
  */
 
-namespace rollun\amazon\ProductAdverstising\DataStore\Factory;
+namespace rollun\amazon\DataStore\Factory;
 
 use Interop\Container\ContainerInterface;
 use Psr\Container\ContainerExceptionInterface;
@@ -47,7 +47,12 @@ class ItemClientAbstractFactory implements AbstractFactoryInterface
 
     /**
      * Create an object
-     *
+     * "dataStore" => [
+     *      ItemClient::class => [
+     *          ItemClientAbstractFactory::KEY_APAI_IO => ApaiIO::class
+     *          ItemClientAbstractFactory::KEY_CLASS => ItemClient::class
+     *      ]
+     * ]
      * @param  ContainerInterface $container
      * @param  string $requestedName
      * @param  null|array $options

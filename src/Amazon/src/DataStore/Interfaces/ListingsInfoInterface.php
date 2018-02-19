@@ -4,7 +4,7 @@
 namespace rollun\amazon\DataStore\Interfaces;
 
 
-interface ListingsInfo extends ListingsInterface
+interface ListingsInfoInterface extends ListingsInterface
 {
     /**
      * Require item manufacture part number

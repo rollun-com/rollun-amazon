@@ -6,7 +6,7 @@ namespace rollun\amazon\DataStore;
 use ApaiIO\ApaiIO;
 use ApaiIO\Operations\Lookup;
 use ApaiIO\Operations\Search;
-use rollun\amazon\DataStore\Interfaces\ListingsInfo;
+use rollun\amazon\DataStore\Interfaces\ListingsInfoInterface;
 use rollun\datastore\DataStore\DataStoreException;
 use rollun\datastore\DataStore\Traits\NoSupportCountTrait;
 use rollun\datastore\DataStore\Traits\NoSupportCreateTrait;
@@ -27,7 +27,7 @@ use Xiag\Rql\Parser\Query;
  * Client for amazon Product advertising api (ItemLookup and ItemSearchMethod)
  * @package rollun\amazon\ProductAdverstising\Client
  */
-class ItemClient implements ListingsInfo
+class ItemClient implements ListingsInfoInterface
 {
     use NoSupportDeleteAllTrait;
     use NoSupportDeleteTrait;
