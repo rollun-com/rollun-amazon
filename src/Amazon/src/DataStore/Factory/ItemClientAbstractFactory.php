@@ -64,7 +64,7 @@ class ItemClientAbstractFactory implements AbstractFactoryInterface
     {
         $config = $container->get("config");
         $factoryConfig = $config[static::KEY][$requestedName];
-        if(isset($factoryConfig[static::KEY_APAI_IO])) {
+        if(!isset($factoryConfig[static::KEY_APAI_IO])) {
             throw new ServiceNotCreatedException("Not set apaiIO service name in $requestedName dataStore service config.");
         }
         $apaiIO = $container->get($factoryConfig[static::KEY_APAI_IO]);
