@@ -211,8 +211,9 @@ class ItemClient implements ListingsInfoInterface
         $items = isset($response['Items']['Item'][0]) ? $response['Items']['Item'] : [$response['Items']['Item']];
         foreach ($items as $item) {
             foreach ($filters as $param => $values) {
+                $item = $this->parseItemData($item);
                 if ($this->confirmItem($item, $param, $values)) {
-                    $result[] = $this->parseItemData($item);
+                    $result[] = $item;
                 }
             }
         }
@@ -229,7 +230,7 @@ class ItemClient implements ListingsInfoInterface
      */
     protected function confirmItem(array $item, $param, array $values)
     {
-        return isset($item['ItemAttributes'][$param]) &&  in_array($item['ItemAttributes'][$param], $values);
+        return isset($item[$param]) &&  in_array($item[$param], $values);
     }
 
     /**
