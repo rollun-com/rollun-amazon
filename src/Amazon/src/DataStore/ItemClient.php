@@ -279,7 +279,7 @@ class ItemClient implements ListingsInfoInterface
             static::FIELD_MODEL => (isset($item['ItemAttributes']['Model']) ? $item['ItemAttributes']['Model'] : null),
             static::FIELD_BUYBOX_MERCHANT => (isset($item['Offers']['Offer']['Merchant']['Name']) ? $item['Offers']['Offer']['Merchant']['Name'] : null),
             static::FIELD_IS_PRIME => (isset($item['Offers']['Offer']['OfferListing']['IsEligibleForPrime']) ? true : false),
-            static::FIELD_TOTAL_OFFERS => $item['Offers']['TotalOffers'],
+            static::FIELD_TOTAL_OFFERS => $item['OfferSummary']['TotalNew'],
         ];
         return $itemData;
     }

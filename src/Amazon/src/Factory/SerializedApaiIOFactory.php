@@ -34,7 +34,7 @@ use ApaiIO\ApaiIO;
  *
  * @package rollun\amazonItemSearch\Client\Factory
  */
-class SerializedApaiIOFactory implements  FactoryInterface
+class SerializedApaiIOFactory implements FactoryInterface
 {
     const KEY = 'ApaiIOFactory';
     const KEY_COUNTRY = 'country';
