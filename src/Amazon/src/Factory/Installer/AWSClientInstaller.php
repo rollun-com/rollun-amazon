@@ -56,6 +56,7 @@ class AWSClientInstaller extends InstallerAbstract
         } catch (ContainerExceptionInterface $e) { return false;
         }
         return (
+            isset($config["dependencies"]["abstract_factories"]) &&
         in_array(AWSClientAbstractFactory::class, $config["dependencies"]["abstract_factories"])
         );
     }
